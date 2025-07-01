@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CDI-Tool", "CDI-Tool.csproj", "{67039D87-3507-2065-CDC9-9D64F4986703}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{67039D87-3507-2065-CDC9-9D64F4986703}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67039D87-3507-2065-CDC9-9D64F4986703}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67039D87-3507-2065-CDC9-9D64F4986703}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67039D87-3507-2065-CDC9-9D64F4986703}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F6FFE722-D72D-4DB2-9149-037925E62A6A}
+	EndGlobalSection
+EndGlobal

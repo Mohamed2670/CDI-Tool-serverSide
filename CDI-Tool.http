@@ -1,0 +1,6 @@
+@CDI_Tool_HostAddress = http://localhost:5062
+
+GET {{CDI_Tool_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
