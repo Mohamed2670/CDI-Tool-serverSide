@@ -64,6 +64,7 @@ var allowedOrigins = new List<string>
         "http://localhost:5174",
         "http://127.0.0.1:8000",
         "http://localhost:8080",
+        "https://cdi-drug-tool.vercel.app",
 
 };
 
