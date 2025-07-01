@@ -21,7 +21,7 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("Admin",
     builder => { builder.RequireRole("Admin"); });
     options.AddPolicy("User",
-    builder => { builder.RequireRole("Admin","User"); });
+    builder => { builder.RequireRole("Admin", "User"); });
 
 });
 
@@ -63,6 +63,7 @@ var allowedOrigins = new List<string>
     "http://localhost:5173",
         "http://localhost:5174",
         "http://127.0.0.1:8000",
+        "http://localhost:8080",
 
 };
 

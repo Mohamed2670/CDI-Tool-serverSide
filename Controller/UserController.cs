@@ -1,5 +1,6 @@
 using CDI_Tool.Authentication;
 using CDI_Tool.Dtos.UserDtos;
+using CDI_Tool.Model;
 using CDI_Tool.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -7,9 +8,32 @@ using Microsoft.AspNetCore.Mvc;
 namespace CDI_Tool.Controller
 {
     [ApiController, Route("user")]
-    public class UserController(UserService _userService,UserAccessToken userAccessToken) : ControllerBase
+    public class UserController(UserService _userService, UserAccessToken userAccessToken) : ControllerBase
     {
-        [HttpPost("register")]
+        [HttpPost("guest-login"),AllowAnonymous]
+        public IActionResult GuestLogin([FromBody] GuestLoginDto request)
+        {
+            if (string.IsNullOrWhiteSpace(request.Name))
+                return BadRequest("Guest name is required");
+
+            // Create minimal user model for token
+            var user = new User
+            {
+                UserName = request.Name,
+                Email = "", // guests don’t need email
+                Role = Role.User
+            };
+
+            var accessToken = _userService.TokenGenerate(user); 
+
+            return Ok(new
+            {
+                accessToken,
+                role = user.Role.ToString()
+            });
+        }
+
+        [HttpPost("register"),AllowAnonymous]
         public async Task<IActionResult> AddUser([FromBody] UserAddDto userAddDto)
         {
             var user = await _userService.AddUser(userAddDto);
@@ -19,7 +43,7 @@ namespace CDI_Tool.Controller
             }
             return Ok("User Added");
         }
-        [HttpPost("login")]
+        [HttpPost("login"),AllowAnonymous]
         public async Task<IActionResult> Login(UserLoginDto userLoginDto)
         {
             var tokens = await _userService.Login(userLoginDto);

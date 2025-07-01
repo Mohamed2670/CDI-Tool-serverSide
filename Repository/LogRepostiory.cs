@@ -22,21 +22,38 @@ namespace CDI_Tool.Repository
         }
         internal async Task<Log> CreateLog(LogCreateDto logCreateDto)
         {
+            DateTime dob;
+            if (!DateTime.TryParse(logCreateDto.DOB, out dob))
+            {
+                dob = DateTime.MinValue; // or handle as appropriate
+            }
+            // Ensure DOB is UTC
+            dob = DateTime.SpecifyKind(dob, DateTimeKind.Utc);
+
+            decimal totalProfit;
+            if (!decimal.TryParse(logCreateDto.TotalProfit, out totalProfit))
+            {
+                totalProfit = 0; // or handle as appropriate
+            }
+
             var log = new Log
             {
                 GuestName = logCreateDto.GuestName,
                 LastName = logCreateDto.LastName,
-                DOB = DateTime.Parse(logCreateDto.DOB),
+                DOB = dob,
                 FirstInitial = logCreateDto.FirstInitial,
                 MRN = logCreateDto.MRN,
                 Insurance = logCreateDto.Insurance,
                 Drugs = logCreateDto.SelectedDrugs,
-                TotalProfit = decimal.Parse(logCreateDto.TotalProfit),
+                TotalProfit = totalProfit,
                 Decision = logCreateDto.Decision,
                 TransactionID = logCreateDto.TransactionID,
                 Timestamp = logCreateDto.Timestamp,
+
             };
+
             var entry = await _context.Logs.AddAsync(log);
+            await _context.SaveChangesAsync();
             return entry.Entity;
         }
         internal async Task<LogResponseReadDto> GetFilterdLogsPaginated(RequestFilteredLogReadDto request, int pageSize = 100, int pageNumber = 1)

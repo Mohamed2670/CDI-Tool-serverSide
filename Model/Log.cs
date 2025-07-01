@@ -7,7 +7,7 @@ namespace CDI_Tool.Model
         public string Timestamp { get; set; }
         public string GuestName { get; set; }
         public string LastName { get; set; }
-        public DateTime DOB { get; set; }
+        public DateTime DOB { get; set; } = DateTime.UtcNow;
         public string FirstInitial { get; set; }
         public string MRN { get; set; }
         public string Insurance { get; set; }
