@@ -8,13 +8,13 @@ namespace CDI_Tool.Controller
     [ApiController, Route("log"), Authorize(Policy = "Admin")]
     public class LogController(LogService _logService) : ControllerBase
     {
-        [HttpGet("GetAllLogsPaginated"),AllowAnonymous]
+        [HttpGet("GetAllLogsPaginated")]
         public async Task<IActionResult> GetAllLogsPaginated([FromQuery] int pageSize, [FromQuery] int pageNumber)
         {
             var items = await _logService.GetAllLogsPaginated(pageSize, pageNumber);
             return Ok(items);
         }
-        [HttpGet("GetFilterdLogsPaginated"),AllowAnonymous]
+        [HttpGet("GetFilterdLogsPaginated")]
         public async Task<IActionResult> GetFilterdLogsPaginated([FromQuery] RequestFilteredLogReadDto requestFilteredLogReadDto, [FromQuery] int pageSize, [FromQuery] int pageNumber)
         {
             var items = await _logService.GetFilterdLogsPaginated(requestFilteredLogReadDto, pageSize, pageNumber);
